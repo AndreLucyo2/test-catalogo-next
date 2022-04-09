@@ -3,12 +3,31 @@
 
 context('Desafio NEXT', () => {
 
-    it('Bdd1 - Acessando pagina', () => {
 
-        cy.visit('https://meucomercio.com.br/lojaqualificacao')
+    before(() => {
 
-        cy.get('.list-product__items__wrapper').should('exist')
+        //Intersepta a requisição da consulta e dar um apelido
+        // cy.intercept(
+        //     'GET',
+        //     '**?q=Capa Celular S20 Clonado**'
+        // ).as('getBuscaResult')
+
+        cy.log('## Acessando pagina')
+        cy.visit('https://meucomercio.com.br/lojaqualificacao');
 
     });
+
+    it.only('Bdd - Acessar a pagina', () => {
+        cy.get('.list-product__items__wrapper').should('be.visible');
+    });
+
+    it.only('Bdd - Consultar clicando Enter', () => {
+
+        cy.get('.search-bar__input')                  //encontra o elemento
+            .should('be.visible')                     //valida se esta visivel
+            .type('Capa Celular S20 Clonado{enter}')  //faz uma busca com Enter
+
+    });
+
 
 });
