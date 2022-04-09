@@ -13,6 +13,12 @@ Data: 09/04/2022
 >Quando eu clicar na tecla Enter 
 >Então deve executar uma cosulta
 
+## Bdd
+##### Cenário: Fazer consulta clicando lupa
+>Dado que digite Capa Celular
+>Quando eu clicar no elemento lupa
+>Então deve executar uma cosulta
+
 
 ## Bdd
 ##### Cenário: Mostrar detalhes do produto
