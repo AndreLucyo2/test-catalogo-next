@@ -7,6 +7,8 @@ context('Desafio NEXT', () => {
 
         cy.visit('https://meucomercio.com.br/lojaqualificacao')
 
+        cy.get('.list-product__items__wrapper').should('exist')
+
     });
 
 });
