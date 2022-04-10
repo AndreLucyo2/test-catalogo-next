@@ -22,7 +22,6 @@ class Catalogo {
     consultarComEnter() {
         cy.log('## Consultar clicando Enter')
         cy.get(elements.cpPesquisa)
-            .should('be.visible')
             .type(`${txtPesquisa}{enter}`)
     }
 
@@ -32,7 +31,7 @@ class Catalogo {
         cy.get(elements.infProduto).should('be.visible')
     }
 
-    obterValorProduto() {
+    validarValorProduto() {
 
         let valorProduto = 0;
         var isMaior = false;
@@ -40,7 +39,6 @@ class Catalogo {
         cy.log('## Obter valor do produto')
         cy.get(elements.infPrecoProduto)
             .children()
-            .should('be.visible')
             .invoke('text').then(text => {
                 cy.log(text)
                 valorProduto = format(text)
@@ -60,16 +58,52 @@ class Catalogo {
 
         cy.log('## Clicar no botão Adicionar à sacola')
         cy.get(elements.btnAdicionarSacola)
-            .should('be.visible')
             .contains('Adicionar à sacola')
             .click()
-
     }
 
     visualizarQtdVsPrecoProduto() {
         cy.log('## Mostrar qtd x valor')
         cy.get(elements.infPrecoQtdProduto)
             .should('be.visible')
+    }
+
+    calcularQtsVsPrecoProduto() {
+        var qtdProduto = 0
+        let valorProduto = 0
+        let valorSacola = 0
+
+        cy.log('## Obter valor do produto')
+        cy.get(elements.infPrecoProduto)
+            .children()
+            .invoke('text').then(text => {
+                valorProduto = format(text)
+                cy.log('Valor Prod.:' + valorProduto)
+            })
+
+        cy.log('## Coferir qtd x valor')
+        cy.get(elements.infPrecoQtdProduto)
+            .invoke('text').then(texto => {
+
+                var posCaractIgual = 0
+
+                if (texto.indexOf('=') !== -1) {
+                    posCaractIgual = texto.indexOf('=')
+                    qtdProduto = texto.substring(0, posCaractIgual - 1)
+                    valorSacola = format(texto.substring(posCaractIgual + 1, (texto.length - posCaractIgual + 1)))
+                }
+
+                cy.log(`Texto completo: ${texto}`)
+                cy.log(`NumCaract:${texto.length}`)
+                cy.log(`Pos "=":${posCaractIgual}`)
+
+                cy.log(`Qtd: ${qtdProduto}`)
+                cy.log(`Val. Produto: ${valorProduto}`)
+                cy.log(`Val. Sacola: ${valorSacola}`)
+
+                expect(valorProduto * qtdProduto).to.be.eq(valorSacola)
+
+            })
     }
 
 }
