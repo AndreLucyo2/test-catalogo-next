@@ -60,6 +60,7 @@ context('Desafio NEXT', () => {
     //     //cy.wait('@getBuscaResult')
     // });
 
+    //========================================================================
     it('Bdd - Mostrar detalhes do produto', () => {
 
         cy.log('## Consultar clicando Enter')
@@ -73,7 +74,7 @@ context('Desafio NEXT', () => {
         cy.get('.product-detail__content__info').should('be.visible')
     });
 
-
+    //========================================================================
     it('Bdd - Mostrar valor do produto maior que zero', () => {
 
         let valorProduto = 0;
@@ -108,15 +109,16 @@ context('Desafio NEXT', () => {
             })
     });
 
-
+    //========================================================================
     it.only('Bdd - Adicionar um produto na sacola', () => {
 
+        var qtdProduto = 0
         let valorProduto = 0
         let valorSacola = 0
 
         cy.log('## Consultar clicando Enter')
         cy.get('.search-bar__input, [type=search]')
-            .wait(10000)
+            //.wait(10000)
             .should('be.visible')
             .type('Capa Celular S20 Clonado{enter}')
 
@@ -124,60 +126,47 @@ context('Desafio NEXT', () => {
         cy.get('.img,[alt=" Capa Celular S20 Clonado"]').click()
         cy.get('.product-detail__content__info').should('be.visible')
 
+        cy.log('## Obter valor do produto')
+        cy.get('.product-detail__content__info__price')
+            .children()
+            //.should('be.visible')
+            .invoke('text').then(text => {
+                cy.log(text)
+                valorProduto = format(text)
+                cy.log('Valor Prod.:' + valorProduto)
+            })
+
         cy.log('## Clicar no botão Adicionar à sacola')
         cy.get('.button, ui circular secondary button nex-btn nex-btn-primary product-detail__content__info__add-cart')
             .should('be.visible')
             .contains('Adicionar à sacola')
             .click()
 
-        cy.get('.div, .checkout-button__total-price')
-            .children()
+        cy.log('## Coferir qtd x valor')
+        cy.get('.div, .product-detail__content__info__counter-wrapper__price_qtd')
             .should('be.visible')
-            .invoke('text').then(value => {
-                cy.log(value)
+            .invoke('text').then(texto => {
+
+                var posCaractIgual = 0
+
+                if (texto.indexOf('=') !== -1) {
+                    posCaractIgual = texto.indexOf('=')
+                    qtdProduto = texto.substring(0, posCaractIgual - 1)
+                    valorSacola = format(texto.substring(posCaractIgual + 1, (texto.length - posCaractIgual + 1)))
+                }
+
+                cy.log(`Texto completo: ${texto}`)
+                cy.log(`NumCaract:${texto.length}`)
+                cy.log(`Pos "=":${posCaractIgual}`)
+
+                cy.log(`Qtd: ${qtdProduto}`)
+                cy.log(`Val. Produto: ${valorProduto}`)
+                cy.log(`Val. Sacola: ${valorSacola}`)
+
+                expect(valorProduto * qtdProduto).to.be.eq(valorSacola)
+
             })
 
-        //cy.log('## Obter valor do Pedido')
-        //cy.get('product-detail__header-wrapper flex flex-justify-between')
-        //    .should('be.visible')
-        //cy.get('.checkout')
-        //    .parent()
-        //    .find('.div,.checkout-button')
-        //    .click({ multiple: true })
-
-        //cy.get('.div,.checkout-button')
-        //    .should('be.visible')
-        //    .click({ multiple: true }, { force: true })
-
-        //cy.log('## Obter valor do Pedido')
-        //cy.get('.div, .checkout-button__total-price')
-        //    .children()
-        //    .should('be.visible')
-        //    .invoke('text').then(value => {
-        //
-        //        cy.log(value)
-        //
-        //        //valorSacola = format(value)
-        //
-        //        //cy.log(valorSacola)
-        //    })
-
-        //cy.log('## Obter valor do Pedido')
-        //cy.get('.div, .product-detail__content__info__counter-wrapper__price_qtd')
-        //    .should('be.visible')
-        //    .invoke('text').then(value => {
-        //
-        //        cy.log(value)
-        //
-        //        //valorSacola = format(value)
-        //
-        //        //cy.log(valorSacola)
-        //    })
-        //
-
     });
-
-
-
 
 });
