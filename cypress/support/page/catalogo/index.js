@@ -2,6 +2,9 @@
 const url = Cypress.config("baseUrl")
 const elements = require('./elements').ELEMENTS;
 
+//Texto de pesquisa:
+const txtPesquisa = 'Capa Celular S20 Clonado'
+
 //Ações na pagina
 class Catalogo {
 
@@ -13,6 +16,13 @@ class Catalogo {
     mostrarListaProduto() {
         cy.log('## Mostrar lista de produtos')
         cy.get(elements.lsProduto).should('be.visible');
+    }
+
+    consultarComEnter() {
+        cy.log('## Consultar clicando Enter')
+        cy.get(elements.cpPesquisa)
+            .should('be.visible')
+            .type(`${txtPesquisa}{enter}`)
     }
 
 }

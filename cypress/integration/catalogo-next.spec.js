@@ -25,17 +25,13 @@ context('Desafio NEXT', () => {
 
 
     //========================================================================
-    it.only('Mostrar lista de produtos', () => {
+    it('Mostrar lista de produtos', () => {
         Catalogo.mostrarListaProduto();
     });
 
     //========================================================================
-    it('Consultar clicando Enter', () => {
-
-        cy.log('## Consultar clicando Enter')
-        cy.get('.search-bar__input, [type=search]')   //encontra o elemento
-            .should('be.visible')                     //valida se esta visivel
-            .type('Capa Celular S20 Clonado{enter}')  //faz uma busca com Enter
+    it.only('Consultar clicando Enter', () => {
+        Catalogo.consultarComEnter();
     });
 
     //========================================================================
