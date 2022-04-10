@@ -61,21 +61,22 @@ context('Desafio NEXT', () => {
     // });
 
     //========================================================================
-    it('Bdd - Mostrar detalhes do produto', () => {
+    it('Mostrar detalhes do produto', () => {
 
         cy.log('## Consultar clicando Enter')
         cy.get('.search-bar__input, [type=search]')
             .should('be.visible')
             .type('Capa Celular S20 Clonado{enter}')
 
-        cy.wait(50000)
+        cy.wait(10000)
         cy.log('## Mostrar detalhes')
         cy.get('.img,[alt=" Capa Celular S20 Clonado"]').click()
-        cy.get('.product-detail__content__info').should('be.visible')
+        cy.get('.product-detail__content__info')
+            .should('be.visible')
     });
 
     //========================================================================
-    it('Bdd - Mostrar valor do produto maior que zero', () => {
+    it('Mostrar valor do produto maior que zero', () => {
 
         let valorProduto = 0;
         var isMaior = false;
@@ -85,10 +86,10 @@ context('Desafio NEXT', () => {
             .should('be.visible')
             .type('Capa Celular S20 Clonado{enter}')
 
-        //cy.wait(10000)
         cy.log('## Mostrar detalhes')
         cy.get('.img,[alt=" Capa Celular S20 Clonado"]').click()
-        cy.get('.product-detail__content__info').should('be.visible')
+        cy.get('.product-detail__content__info')
+            .should('be.visible')
 
         cy.log('## Obter valor do produto')
         cy.get('.product-detail__content__info__price')
@@ -110,7 +111,35 @@ context('Desafio NEXT', () => {
     });
 
     //========================================================================
-    it.only('Bdd - Adicionar um produto na sacola', () => {
+    it('Bdd - Adicionar um produto à sacola', () => {
+
+        var qtdProduto = 0
+        let valorProduto = 0
+        let valorSacola = 0
+
+        cy.log('## Consultar clicando Enter')
+        cy.get('.search-bar__input, [type=search]')
+            .should('be.visible')
+            .type('Capa Celular S20 Clonado{enter}')
+
+        cy.log('## Mostrar detalhes')
+        cy.get('.img,[alt=" Capa Celular S20 Clonado"]').click()
+        cy.get('.product-detail__content__info')
+            .should('be.visible')
+
+        cy.log('## Clicar no botão Adicionar à sacola')
+        cy.get('.button, ui circular secondary button nex-btn nex-btn-primary product-detail__content__info__add-cart')
+            .should('be.visible')
+            .contains('Adicionar à sacola')
+            .click()
+
+        cy.log('## Mostrar qtd x valor')
+        cy.get('.div, .product-detail__content__info__counter-wrapper__price_qtd')
+            .should('be.visible')
+    });
+
+    //========================================================================
+    it.only('Calcular a qtd x valor', () => {
 
         var qtdProduto = 0
         let valorProduto = 0
@@ -129,7 +158,7 @@ context('Desafio NEXT', () => {
         cy.log('## Obter valor do produto')
         cy.get('.product-detail__content__info__price')
             .children()
-            //.should('be.visible')
+            .should('be.visible')
             .invoke('text').then(text => {
                 cy.log(text)
                 valorProduto = format(text)
