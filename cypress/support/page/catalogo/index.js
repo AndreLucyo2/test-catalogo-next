@@ -56,6 +56,22 @@ class Catalogo {
             })
     }
 
+    clicarAdicionarSacola() {
+
+        cy.log('## Clicar no botão Adicionar à sacola')
+        cy.get(elements.btnAdicionarSacola)
+            .should('be.visible')
+            .contains('Adicionar à sacola')
+            .click()
+
+    }
+
+    visualizarQtdVsPrecoProduto() {
+        cy.log('## Mostrar qtd x valor')
+        cy.get(elements.infPrecoQtdProduto)
+            .should('be.visible')
+    }
+
 }
 
 export default new Catalogo();
