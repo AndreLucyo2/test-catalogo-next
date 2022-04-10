@@ -5,7 +5,7 @@
 import { format } from '../support/utils'
 
 //Importar acções:
-import Catalogo from '../support/pages/catalogo'
+import Catalogo from '../support/page/catalogo'
 
 context('Desafio NEXT', () => {
 
@@ -26,8 +26,7 @@ context('Desafio NEXT', () => {
 
     //========================================================================
     it.only('Mostrar lista de produtos', () => {
-        cy.log('## Mostrar lista de produtos')
-        cy.get('.list-product__items__wrapper').should('be.visible');
+        Catalogo.mostrarListaProduto();
     });
 
     //========================================================================
