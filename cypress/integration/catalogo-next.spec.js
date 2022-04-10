@@ -31,13 +31,13 @@ context('Desafio NEXT', () => {
 
 
     //========================================================================
-    it('Bdd - Mostrar lista de produtos', () => {
+    it('Mostrar lista de produtos', () => {
         cy.log('## Mostrar lista de produtos')
         cy.get('.list-product__items__wrapper').should('be.visible');
     });
 
     //========================================================================
-    it('Bdd - Consultar clicando Enter', () => {
+    it('Consultar clicando Enter', () => {
 
         cy.log('## Consultar clicando Enter')
         cy.get('.search-bar__input, [type=search]')   //encontra o elemento
@@ -111,7 +111,7 @@ context('Desafio NEXT', () => {
     });
 
     //========================================================================
-    it('Bdd - Adicionar um produto à sacola', () => {
+    it('Adicionar um produto à sacola', () => {
 
         var qtdProduto = 0
         let valorProduto = 0
