@@ -1,6 +1,9 @@
 //intelesence do cypress
 /// <reference types = "Cypress" />
 
+//Importa as funções do arquivo utils.js
+import { format } from '../support/utils'
+
 context('Desafio NEXT', () => {
 
     //========================================================================
@@ -28,8 +31,8 @@ context('Desafio NEXT', () => {
 
 
     //========================================================================
-    it('Bdd - Acessar a pagina', () => {
-        cy.log('## Pagina carregou')
+    it('Bdd - Mostrar lista de produtos', () => {
+        cy.log('## Mostrar lista de produtos')
         cy.get('.list-product__items__wrapper').should('be.visible');
     });
 
@@ -40,10 +43,6 @@ context('Desafio NEXT', () => {
         cy.get('.search-bar__input, [type=search]')   //encontra o elemento
             .should('be.visible')                     //valida se esta visivel
             .type('Capa Celular S20 Clonado{enter}')  //faz uma busca com Enter
-
-        //cy.get('.results')
-        //    .should('contain', 'Capa Celular S20 Clonado') //Retornar Erro de timeout
-
     });
 
     //========================================================================
@@ -61,16 +60,121 @@ context('Desafio NEXT', () => {
     //     //cy.wait('@getBuscaResult')
     // });
 
-    it.only('Bdd - Mostrar detalhes do produto', () => {
+    it('Bdd - Mostrar detalhes do produto', () => {
 
         cy.log('## Consultar clicando Enter')
         cy.get('.search-bar__input, [type=search]')
             .should('be.visible')
             .type('Capa Celular S20 Clonado{enter}')
 
-        cy.log('## Mostrar detelhes')
+        cy.wait(50000)
+        cy.log('## Mostrar detalhes')
         cy.get('.img,[alt=" Capa Celular S20 Clonado"]').click()
         cy.get('.product-detail__content__info').should('be.visible')
+    });
+
+
+    it('Bdd - Mostrar valor do produto maior que zero', () => {
+
+        let valorProduto = 0;
+        var isMaior = false;
+
+        cy.log('## Consultar clicando Enter')
+        cy.get('.search-bar__input, [type=search]')
+            .should('be.visible')
+            .type('Capa Celular S20 Clonado{enter}')
+
+        //cy.wait(10000)
+        cy.log('## Mostrar detalhes')
+        cy.get('.img,[alt=" Capa Celular S20 Clonado"]').click()
+        cy.get('.product-detail__content__info').should('be.visible')
+
+        cy.log('## Obter valor do produto')
+        cy.get('.product-detail__content__info__price')
+            .children()
+            //.should('be.visible')
+            .invoke('text').then(text => {
+                cy.log(text)
+                valorProduto = format(text)
+                cy.log('Valor Prod.:' + valorProduto)
+
+                if (valorProduto > 0) {
+                    isMaior = true
+                    cy.log(isMaior)
+                }
+
+                cy.log('É Maior que zero: ' + isMaior)
+                expect(isMaior).to.be.eq(true)
+            })
+    });
+
+
+    it.only('Bdd - Adicionar um produto na sacola', () => {
+
+        let valorProduto = 0
+        let valorSacola = 0
+
+        cy.log('## Consultar clicando Enter')
+        cy.get('.search-bar__input, [type=search]')
+            .wait(10000)
+            .should('be.visible')
+            .type('Capa Celular S20 Clonado{enter}')
+
+        cy.log('## Mostrar detalhes')
+        cy.get('.img,[alt=" Capa Celular S20 Clonado"]').click()
+        cy.get('.product-detail__content__info').should('be.visible')
+
+        cy.log('## Clicar no botão Adicionar à sacola')
+        cy.get('.button, ui circular secondary button nex-btn nex-btn-primary product-detail__content__info__add-cart')
+            .should('be.visible')
+            .contains('Adicionar à sacola')
+            .click()
+
+        cy.get('.div, .checkout-button__total-price')
+            .children()
+            .should('be.visible')
+            .invoke('text').then(value => {
+                cy.log(value)
+            })
+
+        //cy.log('## Obter valor do Pedido')
+        //cy.get('product-detail__header-wrapper flex flex-justify-between')
+        //    .should('be.visible')
+        //cy.get('.checkout')
+        //    .parent()
+        //    .find('.div,.checkout-button')
+        //    .click({ multiple: true })
+
+        //cy.get('.div,.checkout-button')
+        //    .should('be.visible')
+        //    .click({ multiple: true }, { force: true })
+
+        //cy.log('## Obter valor do Pedido')
+        //cy.get('.div, .checkout-button__total-price')
+        //    .children()
+        //    .should('be.visible')
+        //    .invoke('text').then(value => {
+        //
+        //        cy.log(value)
+        //
+        //        //valorSacola = format(value)
+        //
+        //        //cy.log(valorSacola)
+        //    })
+
+        //cy.log('## Obter valor do Pedido')
+        //cy.get('.div, .product-detail__content__info__counter-wrapper__price_qtd')
+        //    .should('be.visible')
+        //    .invoke('text').then(value => {
+        //
+        //        cy.log(value)
+        //
+        //        //valorSacola = format(value)
+        //
+        //        //cy.log(valorSacola)
+        //    })
+        //
+
     });
 
 
