@@ -25,6 +25,12 @@ class Catalogo {
             .type(`${txtPesquisa}{enter}`)
     }
 
+    mostrarDetalheProduto() {
+        cy.log('## Mostrar detalhes')
+        cy.get(elements.imgProduto).click()
+        cy.get(elements.infProduto).should('be.visible')
+    }
+
 }
 
 export default new Catalogo();

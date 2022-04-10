@@ -23,45 +23,20 @@ context('Desafio NEXT', () => {
         Catalogo.acessarPagina();
     });
 
-
     //========================================================================
     it('Mostrar lista de produtos', () => {
         Catalogo.mostrarListaProduto();
     });
 
     //========================================================================
-    it.only('Consultar clicando Enter', () => {
+    it('Consultar clicando Enter', () => {
         Catalogo.consultarComEnter();
     });
 
     //========================================================================
-    // it('Bdd - Consultar clicando na lupa', () => {
-    //
-    //     cy.log('## Consultar clicando na lupa')
-    //     cy.get('.search-bar__input, [type=search]')                  //encontra o elemento
-    //         .should('be.visible')                     //valida se esta visivel
-    //         .type('Capa Celular')                     //faz uma busca
-    //
-    //     cy.get('.nex-icon-search')                    //encontra o elemento
-    //         .should('be.visible')                     //valida se esta visivel
-    //         .click()                                  //manda um click
-    //
-    //     //cy.wait('@getBuscaResult')
-    // });
-
-    //========================================================================
-    it('Mostrar detalhes do produto', () => {
-
-        cy.log('## Consultar clicando Enter')
-        cy.get('.search-bar__input, [type=search]')
-            .should('be.visible')
-            .type('Capa Celular S20 Clonado{enter}')
-
-        cy.wait(10000)
-        cy.log('## Mostrar detalhes')
-        cy.get('.img,[alt=" Capa Celular S20 Clonado"]').click()
-        cy.get('.product-detail__content__info')
-            .should('be.visible')
+    it.only('Mostrar detalhes do produto', () => {
+        Catalogo.consultarComEnter();
+        Catalogo.mostrarDetalheProduto();
     });
 
     //========================================================================
@@ -128,7 +103,7 @@ context('Desafio NEXT', () => {
     });
 
     //========================================================================
-    it.only('Calcular a qtd x valor', () => {
+    it('Calcular a qtd x valor', () => {
 
         var qtdProduto = 0
         let valorProduto = 0
