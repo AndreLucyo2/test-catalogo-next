@@ -4,7 +4,8 @@
 context('Desafio NEXT', () => {
 
     //========================================================================
-    //Adicionar uma verificação para ignorar erros não capturados no Cypress
+    //Adicionar uma verificação para ignorar erros não capturados no Cypress 
+    //Ref. https://github.com/cypress-io/cypress/issues/2554
     Cypress.on('uncaught:exception', (err, runnable) => {
         // returning false here prevents Cypress from
         // failing the test
