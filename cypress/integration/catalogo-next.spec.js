@@ -4,6 +4,9 @@
 //Importa as funções do arquivo utils.js
 import { format } from '../support/utils'
 
+//Importar acções:
+import Catalogo from '../support/pages/catalogo'
+
 context('Desafio NEXT', () => {
 
     //========================================================================
@@ -17,21 +20,12 @@ context('Desafio NEXT', () => {
 
     //========================================================================
     before(() => {
-
-        //Intersepta a requisição da consulta e dar um apelido
-        //cy.intercept(
-        //    'GET',
-        //    '**?q=**'
-        //).as('getBuscaResult')
-
-        cy.log('## Acessando pagina')
-        cy.visit('https://meucomercio.com.br/lojaqualificacao');
-
+        Catalogo.acessarPagina();
     });
 
 
     //========================================================================
-    it('Mostrar lista de produtos', () => {
+    it.only('Mostrar lista de produtos', () => {
         cy.log('## Mostrar lista de produtos')
         cy.get('.list-product__items__wrapper').should('be.visible');
     });
