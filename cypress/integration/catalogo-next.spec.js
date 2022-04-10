@@ -61,7 +61,17 @@ context('Desafio NEXT', () => {
     //     //cy.wait('@getBuscaResult')
     // });
 
+    it.only('Bdd - Mostrar detalhes do produto', () => {
 
+        cy.log('## Consultar clicando Enter')
+        cy.get('.search-bar__input, [type=search]')
+            .should('be.visible')
+            .type('Capa Celular S20 Clonado{enter}')
+
+        cy.log('## Mostrar detelhes')
+        cy.get('.img,[alt=" Capa Celular S20 Clonado"]').click()
+        cy.get('.product-detail__content__info').should('be.visible')
+    });
 
 
 });
