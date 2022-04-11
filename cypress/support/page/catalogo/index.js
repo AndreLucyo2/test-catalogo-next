@@ -116,6 +116,29 @@ class Catalogo {
         }
     }
 
+    removerUmProdutoDaSacola() {
+        cy.get(elements.infPrecoQtdProduto)
+            .invoke('text').then(texto => {
+
+                var qtdProduto = 0
+                var posCaractIgual = 0
+
+                if (texto.indexOf('=') !== -1) {
+                    posCaractIgual = texto.indexOf('=')
+                    qtdProduto = texto.substring(0, posCaractIgual - 1)
+                }
+
+                cy.log(`Qtd: ${qtdProduto}`)
+
+                if (qtdProduto > 0) {
+
+                    cy.get(elements.containerBtnConter)
+                        .find(elements.btnMinus)
+                        .click()
+                }
+            })
+    }
+
     removerTodosProdutoDaSacola() {
         cy.get(elements.infPrecoQtdProduto)
             .invoke('text').then(texto => {
@@ -140,9 +163,7 @@ class Catalogo {
                 cy.get(elements.btnAdicionarSacola).should('be.visible')
 
             })
-
     }
-
 }
 
 export default new Catalogo();

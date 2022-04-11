@@ -50,14 +50,6 @@ context('Desafio NEXT', () => {
         Catalogo.visualizarQtdVsPrecoProduto();
     });
 
-    //========================================================================
-    it('Calcular a qtd x valor', () => {
-        Catalogo.consultarComEnter();
-        Catalogo.mostrarDetalheProduto();
-        Catalogo.clicarAdicionarSacola();
-        Catalogo.calcularQtsVsPrecoProduto();
-    });
-
     it('Adicionar n quantidades de produtos na Sacola', () => {
         Catalogo.consultarComEnter();
         Catalogo.mostrarDetalheProduto();
@@ -67,7 +59,28 @@ context('Desafio NEXT', () => {
 
     });
 
-    it.only('Remover todos os produtos da Sacola ', () => {
+    //========================================================================
+    it('Calcular a qtd x valor', () => {
+        Catalogo.consultarComEnter();
+        Catalogo.mostrarDetalheProduto();
+        Catalogo.clicarAdicionarSacola();
+        var qtd = 5
+        Catalogo.adicionarProdutoNaSacola(qtd);
+        Catalogo.calcularQtsVsPrecoProduto();
+    });
+
+    it.only('Remover um produtos da Sacola ', () => {
+        Catalogo.consultarComEnter();
+        Catalogo.mostrarDetalheProduto();
+        Catalogo.clicarAdicionarSacola();
+
+        var qtd = 5
+        Catalogo.adicionarProdutoNaSacola(qtd);
+        Catalogo.removerUmProdutoDaSacola();
+
+    });
+
+    it('Remover todos os produtos da Sacola ', () => {
         Catalogo.consultarComEnter();
         Catalogo.mostrarDetalheProduto();
         Catalogo.clicarAdicionarSacola();
