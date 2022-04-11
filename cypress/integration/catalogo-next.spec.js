@@ -51,11 +51,31 @@ context('Desafio NEXT', () => {
     });
 
     //========================================================================
-    it.only('Calcular a qtd x valor', () => {
+    it('Calcular a qtd x valor', () => {
         Catalogo.consultarComEnter();
         Catalogo.mostrarDetalheProduto();
         Catalogo.clicarAdicionarSacola();
         Catalogo.calcularQtsVsPrecoProduto();
+    });
+
+    it('Adicionar n quantidades de produtos na Sacola', () => {
+        Catalogo.consultarComEnter();
+        Catalogo.mostrarDetalheProduto();
+        Catalogo.clicarAdicionarSacola();
+        var qtd = 5
+        Catalogo.adicionarProdutoNaSacola(qtd);
+
+    });
+
+    it.only('Remover todos os produtos da Sacola ', () => {
+        Catalogo.consultarComEnter();
+        Catalogo.mostrarDetalheProduto();
+        Catalogo.clicarAdicionarSacola();
+
+        var qtd = 5
+        Catalogo.adicionarProdutoNaSacola(qtd);
+        Catalogo.removerTodosProdutoDaSacola();
+
     });
 
 });

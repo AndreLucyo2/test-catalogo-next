@@ -106,6 +106,43 @@ class Catalogo {
             })
     }
 
+    adicionarProdutoNaSacola(numero) {
+        for (let index = 0; index < numero; index++) {
+
+            cy.get(elements.containerBtnConter)
+                .find(elements.btnPlus)
+                .should('be.visible')
+                .click()
+        }
+    }
+
+    removerTodosProdutoDaSacola() {
+        cy.get(elements.infPrecoQtdProduto)
+            .invoke('text').then(texto => {
+
+                var qtdProduto = 0
+                var posCaractIgual = 0
+
+                if (texto.indexOf('=') !== -1) {
+                    posCaractIgual = texto.indexOf('=')
+                    qtdProduto = texto.substring(0, posCaractIgual - 1)
+                }
+
+                cy.log(`Qtd a remover: ${qtdProduto}`)
+
+                for (let index = 0; index < qtdProduto; index++) {
+                    cy.get(elements.containerBtnConter)
+                        .find(elements.btnMinus)
+                        .click()
+                }
+
+                //Botão adicionar à sacola deve estar visivel
+                cy.get(elements.btnAdicionarSacola).should('be.visible')
+
+            })
+
+    }
+
 }
 
 export default new Catalogo();
