@@ -36,7 +36,7 @@ context('Desafio NEXT', () => {
     });
 
     //========================================================================
-    it('Mostrar valor do produto maior que zero', () => {
+    it('Mostrar valor do produto', () => {
         Catalogo.consultarComEnter();
         Catalogo.mostrarDetalheProduto();
         Catalogo.validarValorProduto();
@@ -50,7 +50,7 @@ context('Desafio NEXT', () => {
         Catalogo.visualizarQtdVsPrecoProduto();
     });
 
-    it('Adicionar n quantidades de produtos na Sacola', () => {
+    it('Adicionar n quantidades de produtos à Sacola', () => {
         Catalogo.consultarComEnter();
         Catalogo.mostrarDetalheProduto();
         Catalogo.clicarAdicionarSacola();
@@ -70,27 +70,23 @@ context('Desafio NEXT', () => {
     });
 
     //========================================================================
-    it.only('Remover um produtos da Sacola ', () => {
+    it('Remover um produto da Sacola ', () => {
         Catalogo.consultarComEnter();
         Catalogo.mostrarDetalheProduto();
         Catalogo.clicarAdicionarSacola();
-
         var qtd = 5
         Catalogo.adicionarProdutoNaSacola(qtd);
         Catalogo.removerUmProdutoDaSacola();
-
     });
 
     //========================================================================
-    it('Remover todos os produtos da Sacola ', () => {
+    it.only('Remover todos os produtos da Sacola ', () => {
         Catalogo.consultarComEnter();
         Catalogo.mostrarDetalheProduto();
         Catalogo.clicarAdicionarSacola();
-
         var qtd = 5
         Catalogo.adicionarProdutoNaSacola(qtd);
         Catalogo.removerTodosProdutoDaSacola();
-
     });
 
 });
