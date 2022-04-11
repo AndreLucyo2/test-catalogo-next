@@ -32,7 +32,6 @@ class Catalogo {
     }
 
     validarValorProduto() {
-
         let valorProduto = 0;
         var isMaior = false;
 
@@ -55,7 +54,6 @@ class Catalogo {
     }
 
     clicarAdicionarSacola() {
-
         cy.log('## Clicar no botão Adicionar à sacola')
         cy.get(elements.btnAdicionarSacola)
             .contains('Adicionar à sacola')
@@ -84,7 +82,6 @@ class Catalogo {
         cy.log('## Coferir qtd x valor')
         cy.get(elements.infPrecoQtdProduto)
             .invoke('text').then(texto => {
-
                 var posCaractIgual = 0
 
                 if (texto.indexOf('=') !== -1) {
@@ -108,7 +105,6 @@ class Catalogo {
 
     adicionarProdutoNaSacola(numero) {
         for (let index = 0; index < numero; index++) {
-
             cy.get(elements.containerBtnConter)
                 .find(elements.btnPlus)
                 .should('be.visible')
@@ -142,7 +138,6 @@ class Catalogo {
     removerTodosProdutoDaSacola() {
         cy.get(elements.infPrecoQtdProduto)
             .invoke('text').then(texto => {
-
                 var qtdProduto = 0
                 var posCaractIgual = 0
 
