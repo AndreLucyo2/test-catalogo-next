@@ -69,6 +69,7 @@ context('Desafio NEXT', () => {
         Catalogo.calcularQtsVsPrecoProduto();
     });
 
+    //========================================================================
     it.only('Remover um produtos da Sacola ', () => {
         Catalogo.consultarComEnter();
         Catalogo.mostrarDetalheProduto();
@@ -80,6 +81,7 @@ context('Desafio NEXT', () => {
 
     });
 
+    //========================================================================
     it('Remover todos os produtos da Sacola ', () => {
         Catalogo.consultarComEnter();
         Catalogo.mostrarDetalheProduto();
