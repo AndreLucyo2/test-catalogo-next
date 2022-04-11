@@ -31,22 +31,29 @@ Data: 09/04/2022
 >Quando eu clico no botão Adiconar à sacola  
 >Então o visualizo a quantidade e valor adicionado  
 
+## Bdd
+##### Cenário: Adicionar n quantidades de produtos na Sacola 
+>Dado que eu esteja na tela de detalhes do produdo    
+>Quando eu clico n vez no botão [+] de um determinado produto    
+>Então o campo qtde. do produto deve ser adicionado em n unidades  
+
 ## Bdd  
 ##### Cenário: Calcular qtd x valor  
 >Dado que eu esteja na tela de detalhes do produdo    
->Quando eu tenho pro na sacola   
->Então visualizo o valor do meu pedido      
+>Quando eu tenho produtos na sacola   
+>Então visualizo a quantidade e o valor do meu pedido      
 
 ## Bdd
-##### Cenário: Adiciona a qtd. de um produto    
->Dado que eu esteja na tela de detalhes do produdo    
->Quando eu clico uma vez no botão [+] de um determinado produto    
->Então o campo qtde. do produto deve ser adicionado em uma unidade    
-
-## Bdd
-##### Cenário: Remover a qtd. de um produto    
+##### Cenário: Remover um produto    
 >Dado que eu esteja na tela de detalhes do produdo    
 >Quando eu clico uma vez no botão [-] de um determinado produto    
 >Então o campo qtde. do produto deve ser subtraido em uma unidade     
+
+## Bdd
+##### Cenário: Remover todos os produtos da Sacola   
+>Dado que eu esteja na tela de detalhes do produdo    
+>Quando eu clico m vez no botão [-] de um determinado produto 
+>E remova todos os produtos da sacola   
+>Então visualiso o botão Adiconar à sacola    
  
 

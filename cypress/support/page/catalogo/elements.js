@@ -9,5 +9,9 @@ export const ELEMENTS = {
     infPrecoProduto: '.product-detail__content__info__price',
     btnAdicionarSacola: '.button, ui circular secondary button nex-btn nex-btn-primary product-detail__content__info__add-cart',
     infPrecoQtdProduto: '.div, .product-detail__content__info__counter-wrapper__price_qtd',
+    containerBtnConter: '.div, .product-detail__content__info__counter-wrapper',
+    btnPlus: '[class="ui secondary button product-detail__content__info__counter-wrapper__plus"]',
+    btnMinus: '[class="ui black basic button product-detail__content__info__counter-wrapper__minus"]',
+
 
 }
