@@ -79,7 +79,7 @@ class Catalogo {
                 cy.log('Valor Prod.:' + valorProduto)
             })
 
-        cy.log('## Coferir qtd x valor')
+        cy.log('## Conferir qtd x valor')
         cy.get(elements.infPrecoQtdProduto)
             .invoke('text').then(texto => {
                 var posCaractIgual = 0

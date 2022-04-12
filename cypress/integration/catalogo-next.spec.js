@@ -80,7 +80,7 @@ context('Desafio NEXT', () => {
     });
 
     //========================================================================
-    it.only('Remover todos os produtos da Sacola ', () => {
+    it.only('Remover todos os produtos da Sacola', () => {
         Catalogo.consultarComEnter();
         Catalogo.mostrarDetalheProduto();
         Catalogo.clicarAdicionarSacola();
