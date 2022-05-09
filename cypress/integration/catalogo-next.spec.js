@@ -50,7 +50,7 @@ context('Desafio NEXT', () => {
         Catalogo.visualizarQtdVsPrecoProduto();
     });
 
-    it('Adicionar n quantidades de produtos à Sacola', () => {
+    it.only('Adicionar n quantidades de produtos à Sacola', () => {
         Catalogo.consultarComEnter();
         Catalogo.mostrarDetalheProduto();
         Catalogo.clicarAdicionarSacola();
@@ -80,7 +80,7 @@ context('Desafio NEXT', () => {
     });
 
     //========================================================================
-    it.only('Remover todos os produtos da Sacola', () => {
+    it('Remover todos os produtos da Sacola', () => {
         Catalogo.consultarComEnter();
         Catalogo.mostrarDetalheProduto();
         Catalogo.clicarAdicionarSacola();
